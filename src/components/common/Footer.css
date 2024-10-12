@@ -1,0 +1,49 @@
+/* src/Components/common/Footer.css */
+
+.footer {
+    background-color: #003366; /* Match the navbar background */
+    color: white;
+    padding: 20px 0;
+    text-align: center;
+}
+
+.footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.footer-links {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    gap: 15px; /* Space between links */
+    margin: 15px 0; /* Space above and below links */
+}
+
+.footer-links li {
+    margin: 0;
+}
+
+.footer-links a {
+    color: white;
+    text-decoration: none;
+}
+
+.footer-links a:hover {
+    text-decoration: underline; /* Underline on hover */
+}
+
+.social-media {
+    margin-top: 10px;
+}
+
+.social-media a {
+    color: white;
+    margin: 0 10px; /* Space between social media icons */
+    text-decoration: none;
+}
+
+.social-media a:hover {
+    text-decoration: underline; /* Underline on hover */
+}

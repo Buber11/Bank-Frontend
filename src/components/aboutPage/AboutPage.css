@@ -1,0 +1,43 @@
+
+body {
+    font-family: 'Roboto', sans-serif; 
+}
+
+.about-container {
+    max-width: 800px;
+    margin: 50px auto; 
+    padding: 20px;
+    background-color: #f5f5f5; 
+    border-radius: 10px; 
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1); 
+}
+
+h1 {
+    font-family: 'Dancing Script', cursive; 
+    font-size: 48px; 
+    color: #003366; 
+    text-align: center;
+    margin-bottom: 20px; 
+}
+
+p {
+    line-height: 1.6; 
+    margin-bottom: 20px; 
+    font-size: 18px; 
+}
+
+.highlight {
+    color: #ff5722; 
+    font-weight: bold; 
+}
+
+
+@media (max-width: 768px) {
+    h1 {
+        font-size: 36px;
+    }
+
+    p {
+        font-size: 16px; 
+    }
+}
