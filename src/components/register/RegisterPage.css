@@ -66,3 +66,8 @@ header p {
 .register-button:hover {
     background-color: #002244;
 }
+.error {
+    color: red;
+    font-size: 0.875em; /* Dostosuj wielkość czcionki */
+    margin-top: 0.25em; /* Odstęp od elementu formularza */
+}
