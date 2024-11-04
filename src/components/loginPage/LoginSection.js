@@ -6,6 +6,8 @@ import { useNavigate } from 'react-router-dom';
 const LoginSection = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [code, setCode] = useState('');
+  const [errorMessage, setErrorMessage] = useState(''); // Nowy stan dla błędów
   const { login } = useAuth();
   const navigate = useNavigate();
 
@@ -15,6 +17,7 @@ const LoginSection = () => {
     const loginData = {
       username: username,
       password: password,
+      code: code,
     };
 
     try {
@@ -23,19 +26,31 @@ const LoginSection = () => {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(loginData)
+        body: JSON.stringify(loginData),
+        credentials: 'include',
       });
 
       if (response.ok) {
         const data = await response.json();
         const userRole = data.role; 
         login(userRole); 
-        navigate('/'); 
+        navigate('/');
       } else {
-        console.error("Błąd logowania:", response.statusText);
+        const errorData = await response.json(); // Zakładając, że serwer zwraca JSON z błędem
+        const errorMsg = errorData.message || "Wprowadzone dane są niepoprawne."; // Ustawienie komunikatu błędu
+
+        setErrorMessage(errorMsg); // Ustawienie komunikatu błędu
+
+        // Dodatkowa logika, aby sprawdzić, czy komunikat o błędzie jest pusty
+        if (errorData.message === '') {
+          setErrorMessage("Wprowadzone dane są niepoprawne."); // Domyślny komunikat, gdy serwer zwraca pusty ciąg
+        }
+        
+        console.error("Błąd logowania:", errorMsg);
       }
     } catch (error) {
       console.error("Błąd podczas wysyłania żądania:", error);
+      setErrorMessage("Wystąpił błąd podczas logowania."); // Ustawienie komunikatu błędu w przypadku błędu sieci
     }
   };
 
@@ -60,6 +75,15 @@ const LoginSection = () => {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
+          <FormGroup
+            label="Code"
+            type="text"
+            id="code"
+            name="code"
+            value={code}
+            onChange={(e) => setCode(e.target.value)}
+          />
+          {errorMessage && <p className="error-message">{errorMessage}</p>}
           <button type="submit" className="login-button">Log In</button>
         </form>
       </div>
