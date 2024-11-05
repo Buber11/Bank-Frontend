@@ -7,30 +7,33 @@ const EmployeeList = () => {
   const [error, setError] = useState(null);
   const [statusFilter, setStatusFilter] = useState('');
 
-  useEffect(() => {
-    const fetchEmployees = async () => {
-      try {
-        const response = await fetch('https://localhost:8443/api/v1/users', {
-          method: 'GET',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          credentials: 'include'
-        });
+  // Definicja funkcji `fetchEmployees`
+  const fetchEmployees = async () => {
+    setLoading(true);
+    try {
+      const response = await fetch('https://localhost:8443/api/v1/users', {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        credentials: 'include'
+      });
 
-        if (!response.ok) {
-          throw new Error('Failed to fetch employees');
-        }
-
-        const data = await response.json();
-        setEmployees(data);
-      } catch (err) {
-        setError(err.message);
-      } finally {
-        setLoading(false);
+      if (!response.ok) {
+        throw new Error('Failed to fetch employees');
       }
-    };
 
+      const data = await response.json();
+      setEmployees(data);
+    } catch (err) {
+      setError(err.message);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  // Wywołanie `fetchEmployees` przy pierwszym renderowaniu komponentu
+  useEffect(() => {
     fetchEmployees();
   }, []);
 
@@ -48,10 +51,35 @@ const EmployeeList = () => {
       });
 
       if (response.status === 204) {
-        setEmployees(employees.filter(employee => employee.userId !== userId));
-      } else if (!response.ok) {
+        fetchEmployees(); // Ponownie pobierz pracowników po usunięciu
+      } else {
         const errorText = await response.text();
         throw new Error(`Failed to delete user: ${errorText}`);
+      }
+    } catch (err) {
+      setError(err.message);
+    }
+  };
+
+  const handleStatusChange = async (userId, currentStatus) => {
+    const newStatus = currentStatus === 'ACTIVE' ? 'LOCKED' : 'ACTIVE'; 
+    const url = `https://localhost:8443/api/v1/users/${userId}/${newStatus}`;
+
+    try {
+      const response = await fetch(url, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ status: 'LOCKED' }),
+        credentials: 'include'
+      });
+
+      if (response.ok) {
+        fetchEmployees(); // Ponownie pobierz pracowników po zmianie statusu
+      } else {
+        const errorText = await response.text();
+        throw new Error(`Failed to change user status: ${errorText}`);
       }
     } catch (err) {
       setError(err.message);
@@ -98,7 +126,8 @@ const EmployeeList = () => {
             <th>Email</th>
             <th>Phone Number</th>
             <th>Status</th>
-            <th>Actions</th>
+            <th>Remove</th>
+            <th>Change status</th>
           </tr>
         </thead>
         <tbody>
@@ -110,15 +139,13 @@ const EmployeeList = () => {
               <td>{employee.phoneNumber}</td>
               <td>{employee.status}</td>
               <td>
-              
-                <button
-                  onClick={() => {
-                    handleDeleteUser(employee.userId);
-                  }}
-                >
-                  REMOVE
+                <button onClick={() => handleDeleteUser(employee.userId)}>REMOVE</button>
+              </td>
+              <td>
+                <button onClick={() => handleStatusChange(employee.userId, employee.status)}
+                  className={employee.status === 'ACTIVE' ? 'status-button locked' : 'status-button active'}>
+                  {employee.status === 'ACTIVE' ? 'Lock' : 'Activate'}
                 </button>
-
               </td>
             </tr>
           ))}

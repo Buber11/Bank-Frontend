@@ -4,7 +4,7 @@
     border-radius: 12px;
     background-color: #ffffff;
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
-    max-width: 800px;
+    max-width: 1000px;
     font-family: Arial, sans-serif;
     text-align: center;
 }
@@ -112,3 +112,12 @@ button:hover {
     border-color: #003366; /* Kolor podświetlenia na focus */
     outline: none;
 }
+.status-button.active {
+    background-color: green;
+    color: white;
+  }
+  
+  .status-button.locked {
+    background-color: red;
+    color: white;
+  }

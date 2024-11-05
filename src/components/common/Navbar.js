@@ -16,13 +16,14 @@ const Navbar = () => {
                 <li><Link to="/contact">Contact</Link></li>
                 {isLoggedIn ? (
                         <>  
-                            <li><Link onClick={logout} to="/">Logout</Link></li>
+                            
                             {role === "WORKER" && (
                             <li><Link to="/worker-dashboard"> Dashboard </Link></li>
                             )}
                             {role === "CLIENT" && (
                             <li><Link to="/client-dashboard" > Dashboard </Link> </li>
                             )}
+                            <li><Link onClick={logout} to="/">Logout</Link></li>
                         </>
                     ) : (
                         <>

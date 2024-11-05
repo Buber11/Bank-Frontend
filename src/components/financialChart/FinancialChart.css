@@ -1,0 +1,85 @@
+.financial-charts {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    margin: 20px;
+}
+
+.chart-container {
+    flex: 1;
+    margin: 10px;
+    min-width: 300px;
+    max-width: 400px;
+}
+
+/* Kontener dla kontrolek daty */
+.controls {
+    width: 300px;                /* Pełna szerokość */
+    max-width: 600px;          /* Maksymalna szerokość */
+    margin-top: 40px;          /* Odstęp od wykresów */
+    padding: 20px;             /* Padding wewnętrzny */
+    background-color: #f9f9f9; /* Tło kontenera */
+    border-radius: 8px;        /* Zaokrąglone rogi */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* Cień dla efektu głębi */
+}
+
+/* Stylizacja kontenerów do wyboru daty */
+.date-picker-container {
+    display: flex;
+    flex-direction: column;     /* Ustawienie elementów w kolumnie */
+    width: 100%;                /* Pełna szerokość */
+}
+
+.date-picker {
+    display: flex;
+    flex-direction: column;     /* Układ pionowy */
+    margin-bottom: 15px;        /* Odstęp między picker'ami */
+}
+
+/* Styl dla etykiet */
+.date-picker label {
+    margin-bottom: 5px;         /* Odstęp poniżej etykiety */
+    font-weight: bold;          /* Pogrubienie etykiety */
+}
+
+/* Styl dla inputów daty */
+.date-picker .react-datepicker-wrapper {
+    width: 100%;                /* Pełna szerokość */
+}
+
+.date-picker .react-datepicker__input-container {
+    display: flex;
+    align-items: center;        /* Wyśrodkowanie w pionie */
+}
+
+.date-picker .react-datepicker__input {
+    padding: 10px;              /* Padding wewnętrzny */
+    border: 1px solid #ccc;     /* Szary border */
+    border-radius: 4px;         /* Zaokrąglone rogi */
+    transition: border-color 0.3s; /* Animacja zmiany koloru */
+}
+
+.date-picker .react-datepicker__input:focus {
+    outline: none;              /* Brak konturu */
+    border-color: rgba(41, 128, 185, 0.8); /* Kolor border'a przy focusie */
+}
+
+/* Styl dla kalendarza daty */
+.react-datepicker {
+    border-radius: 8px;         /* Zaokrąglone rogi kalendarza */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Cień */
+}
+
+.react-datepicker__header {
+    background-color: rgba(41, 128, 185, 0.6); /* Tło nagłówka kalendarza */
+    border-bottom: none;        /* Brak dolnego border'a */
+    color: white;               /* Kolor tekstu */
+}
+
+/* Styl dla wybranych dni */
+.react-datepicker__day--selected,
+.react-datepicker__day--hover {
+    background-color: rgba(41, 128, 185, 0.8); /* Kolor dla wybranego dnia */
+    color: white;               /* Kolor tekstu dla wybranego dnia */
+}
