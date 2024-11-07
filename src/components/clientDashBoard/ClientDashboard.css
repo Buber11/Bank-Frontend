@@ -54,6 +54,7 @@
 
 .card-details {
   display: flex;
+  gap: 25px;
   justify-content: space-between;
   align-items: center;
   margin-top: 15px;
@@ -98,13 +99,13 @@
 }
 
 .sidebar {
-  width: 250px;
-  background-color: #2C3E50;
-  color: #fff;
-  padding: 20px;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
+    width: 250px;
+    background-color: #003366;
+    color: #fff;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
 }
 
 .sidebar h2 {
@@ -114,29 +115,34 @@
 }
 
 .menu {
-  list-style: none;
-  padding: 0;
-  width: 100%;
+    list-style: none;
+    padding: 0;
+    width: 100%;
 }
 
 .menu li {
-  margin: 15px 0;
+    margin: 15px 0;
+}
+
+.menu li:hover{
+    background-color: #003366;
 }
 
 .menu a {
-  color: #ECF0F1;
-  text-decoration: none;
-  font-size: 18px;
-  padding: 10px 0;
-  display: block;
-  transition: color 0.3s, background-color 0.3s;
-  border-radius: 5px;
+
+    color: #ECF0F1;
+    text-decoration: none;
+    font-size: 18px;
+    padding: 10px 0;
+    display: block;
+    transition: color 0.3s, background-color 0.3s;
+    border-radius: 5px;
 }
 
 .menu a:hover {
-  color: #1ABC9C;
-  background-color: #34495E;
-  padding-left: 10px;
+    color: #1ABC9C;
+    background-color: #003366;
+    padding-left: 10px;
 }
 
 .content {
@@ -268,9 +274,12 @@
 }
 
 .button:hover {
-  background-color: #2980B9;
   transform: scale(1.05);
 }
+button:hover, button:focus {
+     outline: none;
+     box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.3);
+ }
 .modal-overlay {
   position: fixed;
   top: 0;
@@ -342,4 +351,46 @@
 
 .submit-button:hover {
   background-color: #16A085;
+}
+.user-modal-title{
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+/* ClientDashboard.css */
+.modal-content {
+  background-color: #fff; /* White background for the modal */
+  padding: 20px;
+  border-radius: 18px;
+  border: 8px solid #003366; /* Border color set to #003366 */
+  width: 600px; /* Adjust the width as needed */
+  margin: auto; /* Center the modal */
+}
+
+.modal-overlay {
+  background: rgba(0, 0, 0, 0.5); /* Dark semi-transparent background */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.form-group {
+  margin-bottom: 15px;
+  display: flex;
+  flex-direction: column;
+}
+
+.form-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px; /* Space between columns */
+}
+
+.form-row .form-group {
+  flex: 1; /* Each group takes equal width */
+}
+
+/* Style for buttons in modal */
+.modal-buttons {
+  display: flex;
+  justify-content: space-between;
 }
