@@ -11,6 +11,7 @@ import RegisterPage from './components/register/RegisterPage';
 import { useAuth } from './AuthContext';
 import EmployeeList from './components/employeelist/EmployeeList';
 import ClientDashboard from './components/clientDashBoard/ClientDashboard';
+import CurrencyCalculatorContainer from "./components/currencyCalculator/CurrencyCalculatorContainer";
 
 const App = () => {
   return (
@@ -24,8 +25,7 @@ const Layout = () => {
   const location = useLocation();
   const { role } = useAuth();
 
-  // Ścieżki, dla których navbar ma być ukryty
-  const hiddenNavbarPaths = [""];
+  const hiddenNavbarPaths = ["/client-dashboard"];
   const shouldShowNavbar = !hiddenNavbarPaths.includes(location.pathname);
 
   return (
@@ -38,7 +38,7 @@ const Layout = () => {
         <Route path="/contact" element={<ContactPage />} />
         <Route path="/services" element={<ServicesPage />} />
         <Route path="/register" element={<RegisterPage />} />
-        <Route path="/login" element={<LoginPage></LoginPage>} />
+        <Route path="/currency-calculator" element={<CurrencyCalculatorContainer/>} />
 
         {role === "WORKER" && (
           <Route path="/worker-dashboard" element={<EmployeeList/>} />
