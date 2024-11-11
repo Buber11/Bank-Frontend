@@ -1,3 +1,4 @@
+/* Podstawowe style navbar */
 .navbar {
     background-color: #003366;
     padding: 15px 30px;
@@ -15,13 +16,13 @@
 .logo {
     font-size: 1.8rem;
     font-weight: bold;
-    color: #ecf0f1; /* Jasny kolor dla kontrastu */
+    color: #ecf0f1;
     text-decoration: none;
     transition: color 0.3s ease;
 }
 
 .logo:hover {
-    color: #1abc9c; /* Efekt hover dla logo */
+    color: #1abc9c;
 }
 
 .nav-menu {
@@ -66,13 +67,65 @@
 }
 
 .nav-menu li a:hover::after {
-    width: 100%; /* Podkreślenie podczas hovera */
+    width: 100%;
 }
 
+/* Stylowanie hamburgera */
+.hamburger {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+    gap: 5px;
+}
+
+.hamburger span {
+    width: 25px;
+    height: 3px;
+    background-color: #ecf0f1;
+    transition: 0.3s;
+}
+
+/* Widoczność hamburgera na małych ekranach */
 @media (max-width: 768px) {
-    .nav-menu {
-        display: none; /* Schowaj menu na małych ekranach */
+    .hamburger {
+        display: flex;
     }
 
-    /* Dodaj przycisk lub menu rozwijane na mniejszych ekranach */
+    .nav-menu {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        position: absolute;
+        top: 60px;
+        left: 0;
+        width: 100%;
+        background-color: #003366;
+        padding: 15px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        transform: translateY(-100%);
+        opacity: 0;
+        transition: transform 0.3s ease, opacity 0.3s ease;
+    }
+
+    .nav-menu.active {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+
+.hamburger.active span:nth-child(1) {
+    transform: rotate(45deg);
+    position: relative;
+    top: 8px;
+}
+
+.hamburger.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.hamburger.active span:nth-child(3) {
+    transform: rotate(-45deg);
+    position: relative;
+    top: -8px;
 }

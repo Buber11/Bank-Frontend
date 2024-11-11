@@ -66,8 +66,21 @@ header p {
 .register-button:hover {
     background-color: #002244;
 }
+.form-group {
+    margin-bottom: 20px;
+}
+
+.checkbox-label {
+    display: flex;
+    align-items: center; /* Wyrównanie checkboxa i tekstu w poziomie */
+    font-size: 16px; /* Opcjonalnie dostosuj rozmiar tekstu */
+}
+
+.checkbox-label input {
+    margin-right: 10px; /* Dystans między checkboxem a tekstem */
+}
+
 .error {
     color: red;
-    font-size: 0.875em; /* Dostosuj wielkość czcionki */
-    margin-top: 0.25em; /* Odstęp od elementu formularza */
+    font-size: 12px;
 }

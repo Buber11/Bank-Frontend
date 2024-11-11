@@ -11,7 +11,7 @@ const EmployeeList = () => {
   const fetchEmployees = async () => {
     setLoading(true);
     try {
-      const response = await fetch('https://localhost:8443/api/v1/users', {
+      const response = await fetch(`${process.env.REACT_APP_API_URL}/api/v1/users`, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
@@ -39,7 +39,7 @@ const EmployeeList = () => {
 
   const handleDeleteUser = async (userId) => {
     console.log("Attempting to delete user with ID:", userId);
-    const url = `https://localhost:8443/api/v1/users/${userId}`;
+    const url = `${process.env.REACT_APP_API_URL}/api/v1/users/${userId}`;
     console.log(url);
     try {
       const response = await fetch(url, {
@@ -63,7 +63,7 @@ const EmployeeList = () => {
 
   const handleStatusChange = async (userId, currentStatus) => {
     const newStatus = currentStatus === 'ACTIVE' ? 'LOCKED' : 'ACTIVE'; 
-    const url = `https://localhost:8443/api/v1/users/${userId}/${newStatus}`;
+    const url = `${process.env.REACT_APP_API_URL}/api/v1/users/${userId}/${newStatus}`;
 
     try {
       const response = await fetch(url, {

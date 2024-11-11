@@ -14,10 +14,10 @@ const BankRateCurrencyCalculator = () => {
     const fetchRates = async (date) => {
         try {
             // Pobieranie kursów dla wybranej daty
-            const usdResponse = await axios.get(`https://localhost:8443/api/currency/USD/${date}`, {
+            const usdResponse = await axios.get(`${process.env.REACT_APP_API_URL}/api/currency/USD/${date}`, {
                 withCredentials: true,
             });
-            const eurResponse = await axios.get(`https://localhost:8443/api/currency/EUR/${date}`, {
+            const eurResponse = await axios.get(`${process.env.REACT_APP_API_URL}/api/currency/EUR/${date}`, {
                 withCredentials: true,
             });
 

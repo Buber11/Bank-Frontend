@@ -13,19 +13,20 @@ const Register = () => {
         phoneNumber: '',
         pesel: '',
         sex: '',
+        isBusiness: '',
     });
 
     const [errors, setErrors] = useState({}); 
     const [qrValue, setQrValue] = useState('');
 
     const handleChange = (e) => {
-        const { name, value } = e.target;
+        let { name, value } = e.target;
+
         setFormData({
             ...formData,
             [name]: value,
         });
 
-        
         setErrors((prevErrors) => ({
             ...prevErrors,
             [name]: undefined,
@@ -34,9 +35,8 @@ const Register = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-    
         try {
-            const response = await fetch('https://localhost:8443/api/v1/auth/signup', {
+            const response = await fetch(`${process.env.REACT_APP_API_URL}/api/v1/auth/signup`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -79,43 +79,44 @@ const Register = () => {
                 <form className="register-form" onSubmit={handleSubmit}>
                     <div className="form-group">
                         <label htmlFor="username">Username</label>
-                        <input type="text" id="username" name="username" required onChange={handleChange} />
-                        {errors.username && <p className="error">{errors.username}</p>} 
+                        <input type="text" id="username" name="username" required onChange={handleChange}/>
+                        {errors.username && <p className="error">{errors.username}</p>}
                     </div>
                     <div className="form-group">
                         <label htmlFor="password">Password</label>
-                        <input type="password" id="password" name="password" required onChange={handleChange} />
-                        {errors.password && <p className="error">{errors.password}</p>} 
+                        <input type="password" id="password" name="password" required onChange={handleChange}/>
+                        {errors.password && <p className="error">{errors.password}</p>}
                     </div>
                     <div className="form-group">
                         <label htmlFor="email">Email</label>
-                        <input type="email" id="email" name="email" required onChange={handleChange} />
-                        {errors.email && <p className="error">{errors.email}</p>} 
+                        <input type="email" id="email" name="email" required onChange={handleChange}/>
+                        {errors.email && <p className="error">{errors.email}</p>}
                     </div>
                     <div className="form-group">
                         <label htmlFor="firstName">First Name</label>
-                        <input type="text" id="firstName" name="firstName" required onChange={handleChange} />
-                        {errors.firstName && <p className="error">{errors.firstName}</p>} 
+                        <input type="text" id="firstName" name="firstName" required onChange={handleChange}/>
+                        {errors.firstName && <p className="error">{errors.firstName}</p>}
                     </div>
                     <div className="form-group">
                         <label htmlFor="lastName">Last Name</label>
-                        <input type="text" id="lastName" name="lastName" required onChange={handleChange} />
-                        {errors.lastName && <p className="error">{errors.lastName}</p>} 
+                        <input type="text" id="lastName" name="lastName" required onChange={handleChange}/>
+                        {errors.lastName && <p className="error">{errors.lastName}</p>}
                     </div>
                     <div className="form-group">
                         <label htmlFor="countryOfOrigin">Country of Origin</label>
-                        <input type="text" id="countryOfOrigin" name="countryOfOrigin" required onChange={handleChange} />
-                        {errors.countryOfOrigin && <p className="error">{errors.countryOfOrigin}</p>} 
+                        <input type="text" id="countryOfOrigin" name="countryOfOrigin" required
+                               onChange={handleChange}/>
+                        {errors.countryOfOrigin && <p className="error">{errors.countryOfOrigin}</p>}
                     </div>
                     <div className="form-group">
                         <label htmlFor="phoneNumber">Mobile Phone Number</label>
-                        <input type="tel" id="phoneNumber" name="phoneNumber" required onChange={handleChange} />
+                        <input type="tel" id="phoneNumber" name="phoneNumber" required onChange={handleChange}/>
                         {errors.phoneNumber && <p className="error">{errors.phoneNumber}</p>}
                     </div>
                     <div className="form-group">
                         <label htmlFor="pesel">PESEL</label>
-                        <input type="text" id="pesel" name="pesel" required onChange={handleChange} />
-                        {errors.pesel && <p className="error">{errors.pesel}</p>} 
+                        <input type="text" id="pesel" name="pesel" required onChange={handleChange}/>
+                        {errors.pesel && <p className="error">{errors.pesel}</p>}
                     </div>
                     <div className="form-group">
                         <label htmlFor="sex">Sex</label>
@@ -124,15 +125,29 @@ const Register = () => {
                             <option value="man">Male</option>
                             <option value="woman">Female</option>
                         </select>
-                        {errors.sex && <p className="error">{errors.sex}</p>} 
+                        {errors.sex && <p className="error">{errors.sex}</p>}
+                    </div>
+                    <div className="form-group">
+                        <label htmlFor="accountType">Account Type</label>
+                        <select
+                            id="isBusiness"
+                            name="isBusiness"
+                            onChange={handleChange}
+                            value={formData.isBusiness} // Przypisz wartość z formularza
+                            required
+                        >
+                            <option value="FALSE">Personal</option>
+                            <option value="TRUE">Business</option>
+                        </select>
+                        {errors.accountType && <p className="error">{errors.accountType}</p>}
                     </div>
                     <button type="submit" className="register-button">Register</button>
-                    {qrValue && ( 
-                    <div className="qr-code-container">
-                        <h2>Your Barcode QR Code:</h2>
-                        <QRCode value={qrValue} /> 
-                    </div>
-                )}
+                    {qrValue && (
+                        <div className="qr-code-container">
+                            <h2>Your Barcode QR Code:</h2>
+                            <QRCode value={qrValue}/>
+                        </div>
+                    )}
                 </form>
             </div>
         </div>

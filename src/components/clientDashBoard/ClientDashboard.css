@@ -394,3 +394,97 @@ button:hover, button:focus {
   display: flex;
   justify-content: space-between;
 }
+/* General styling adjustments for mobile and tablet */
+@media (max-width: 768px) {
+  body {
+    padding: 20px;
+  }
+
+  /* Padding for general container on mobile */
+  .container {
+    padding: 20px;
+  }
+
+  /* Header adjustments */
+  .header h1 {
+    font-size: 22px;
+  }
+
+  .logout {
+    padding: 8px 16px;
+  }
+
+  /* Section and card adjustments */
+  .section h2 {
+    font-size: 20px;
+  }
+
+  .cards, .transaction-cards, .transfer-buttons {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .card, .transaction-card {
+    padding: 15px;
+  }
+
+  .transaction-card ul {
+    font-size: 16px;
+  }
+
+  .transaction-card h3, .card h3 {
+    font-size: 18px;
+  }
+
+  /* Button adjustments */
+  .button {
+    padding: 10px 15px;
+    font-size: 14px;
+  }
+
+  /* Modal adjustments */
+  .modal {
+    width: 90%;
+    padding: 20px;
+  }
+
+  .modal h2 {
+    font-size: 20px;
+  }
+
+  /* Form adjustments */
+  .transfer-form input {
+    padding: 8px;
+    font-size: 14px;
+  }
+
+  .submit-button {
+    padding: 8px 16px;
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  /* Further adjustments for very small screens */
+  .header h1 {
+    font-size: 20px;
+  }
+
+  .section h2 {
+    font-size: 18px;
+  }
+
+  .card, .transaction-card {
+    padding: 10px;
+  }
+
+  .transaction-card ul, .transfer-form input, .submit-button {
+    font-size: 14px;
+  }
+
+  .button, .logout {
+    padding: 8px 12px;
+    font-size: 14px;
+  }
+}
+

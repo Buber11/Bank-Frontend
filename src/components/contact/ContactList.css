@@ -1,0 +1,96 @@
+/* Styl dla listy kontaktów */
+.contact-list {
+    position: relative; /* Umożliwia ustawienie przycisku w dokładnej pozycji */
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    width: 50%;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    margin: 50px auto;
+    background-color: white;
+}
+
+.contact-list h2 {
+    font-size: 24px;
+    margin-bottom: 15px;
+}
+
+/* Styl dla przycisku Add New Contact */
+.add-contact-btn {
+    background-color: #4CAF50; /* Zielony kolor */
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    padding: 12px 24px;
+    border-radius: 25px;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    position: absolute; /* Umożliwia pozycjonowanie przycisku */
+    right: 20px; /* Odstęp od prawej krawędzi */
+    top: 20px; /* Odstęp od góry */
+}
+
+.add-contact-btn:hover {
+    background-color: #45a049; /* Ciemniejszy zielony */
+    transform: scale(1.05);
+}
+
+.add-contact-icon {
+    font-size: 20px;
+    transition: transform 0.3s ease;
+}
+
+.add-contact-btn:hover .add-contact-icon {
+    transform: rotate(45deg);
+}
+
+/* Styl dla listy kontaktów */
+ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 30px;
+}
+
+li {
+    margin: 10px 0;
+    margin: 20px;
+}
+
+strong {
+    font-weight: bold;
+}
+
+.contact-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    background-color: #ffffff;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.contact-item strong {
+    color: #333;
+    font-weight: bold;
+}
+
+.delete-contact-btn {
+    background-color: #f44336;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+}
+
+.delete-contact-btn:hover {
+    background-color: #d32f2f;
+}
