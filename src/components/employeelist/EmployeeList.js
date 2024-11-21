@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import ClipLoader from "react-spinners/ClipLoader";
 import './EmployeeList.css';
 
 const EmployeeList = () => {
@@ -90,10 +91,6 @@ const EmployeeList = () => {
     setStatusFilter(e.target.value);
   };
 
-  if (loading) {
-    return <div>Loading...</div>;
-  }
-
   if (error) {
     return <div>Error: {error}</div>;
   }
@@ -101,6 +98,15 @@ const EmployeeList = () => {
   const filteredEmployees = employees.filter(employee =>
     statusFilter === '' || employee.status === statusFilter
   );
+
+  if (loading) {
+    return (
+        <div className="loading-screen">
+          <ClipLoader color="#36d7b7" size={50}/>
+          <p>Loading employees...</p>
+        </div>
+    );
+  }
 
   return (
     <div className="employee-list">

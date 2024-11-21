@@ -117,7 +117,16 @@ button:hover {
     color: white;
   }
   
-  .status-button.locked {
-    background-color: red;
-    color: white;
-  }
+.status-button.locked {
+      background-color: red;
+      color: white;
+}
+
+.loading-screen {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f4f4f4; /* opcjonalne tło */
+}

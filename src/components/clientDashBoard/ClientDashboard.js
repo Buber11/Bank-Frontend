@@ -9,6 +9,7 @@ import { useCurrentAccount } from '../contact/CurrentAccountContext';
 import { FaUserPlus, FaSignOutAlt, FaCalculator, FaEnvelope, FaMoneyBillAlt, FaExchangeAlt, FaArrowUp, FaArrowDown } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
 import { FaBars } from 'react-icons/fa';
+import ClipLoader from "react-spinners/ClipLoader";
 
 const ClientDashboard = () => {
   const [accounts, setAccounts] = useState([]);
@@ -18,6 +19,7 @@ const ClientDashboard = () => {
   const [showTransferModal, setShowTransferModal] = useState(false);
   const { isLoggedIn, role, logout } = useAuth();
   const { currentAccount, setCurrentAccount } = useCurrentAccount();
+  const [loading, setLoading] = useState(true);
 
 
   const [transferData, setTransferData] = useState({
@@ -44,6 +46,7 @@ const ClientDashboard = () => {
 
 
   const fetchUserData = async () => {
+    setLoading(true);
     try {
       const response = await fetch(`${process.env.REACT_APP_API_URL}/api/v1/user`, {
         method: 'GET',
@@ -61,6 +64,8 @@ const ClientDashboard = () => {
       }
     } catch (error) {
       console.error("Error fetching user data:", error);
+    } finally{
+      setLoading(false);
     }
   };
   const navigate = useNavigate();
@@ -276,6 +281,15 @@ const ClientDashboard = () => {
     fetchAccounts();
     fetchUserData();
   }, []);
+
+  if (loading) {
+    return (
+        <div className="loading-screen">
+          <ClipLoader color="#36d7b7" size={50}/>
+          <p>Loading employees...</p>
+        </div>
+    );
+  }
 
   return (
       <div className="dashboard">
