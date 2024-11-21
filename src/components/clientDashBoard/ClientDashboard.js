@@ -88,6 +88,7 @@ const ClientDashboard = () => {
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
+
     setTransferData((prevData) => ({ ...prevData, [name]: value }));
   };
 
@@ -95,13 +96,19 @@ const ClientDashboard = () => {
   const handleTransferSubmit = async (e) => {
     e.preventDefault();
 
+    const numericValue = parseFloat(transferData.amount);
+    if (numericValue < 0) {
+      alert("Wartość nie może być ujemna.");
+      return;
+    }
+
     const transactionRequest = {
       hostAccountNumber: currentAccount.accountNumber,
       amount: parseFloat(transferData.amount),
       payeeAccountNumber: transferData.payeeAccount,
       description: transferData.description,
       transactionType: "TRANSFER",
-      currency: transferData.currency,
+      currency: currentAccount.currency,
     };
 
     try {
@@ -120,6 +127,7 @@ const ClientDashboard = () => {
         fetchAccounts();
         setTransferData({ payeeAccount: '', amount: '', description: '' });
       } else {
+
         console.error("Transfer failed!");
       }
     } catch (error) {
